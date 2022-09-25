@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"adrianwilczynski.alpine-js-intellisense",
+		"bradlc.vscode-tailwindcss",
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode"
+	]
+}
