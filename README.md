@@ -137,9 +137,8 @@ const config = {
 
 [Eleventy](https://www.11ty.dev/) の [Pug](https://pugjs.org/) `f.url()` 
 
-```diff
--a(href="/about/") About
-+a(href=f.url('/about/')) About
+```
+a(href=f.url('/about/')) About
 ```
 
 [Vite](https://vitejs.dev/) JavaScript and TypeScript `import.meta.env.BASE_URL` 
@@ -148,7 +147,7 @@ const config = {
 import.meta.env.BASE_URL; // "/my-subdir/"
 ```
 
-## Thank eleventy
+# Thank eleventy
 
 - [eleventy-navigation](https://www.11ty.dev/docs/plugins/navigation/)
 - [eleventy-img](https://www.11ty.dev/docs/plugins/image/):
