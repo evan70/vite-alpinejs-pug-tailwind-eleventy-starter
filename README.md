@@ -1,9 +1,9 @@
 # vite-alpinejs-pug-tailwind-eleventy-starter
 
-
 front-end development environment for static site construction. [Eleventy](https://www.11ty.dev/) と [Vite](https://vitejs.dev/) を中心に構成されています。
 
 ## Intro
+
 It is a front-end development environment for static site construction.
 Sites with a large number of pages can be developed flexibly and comfortably. It is structured around the static site generators Eleventy and Vite.
 Feature Assistance in building HTML files using the static site generator.
@@ -23,7 +23,7 @@ For all modern browsers except Internet Explorer
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - MPA（SPA）JavaScript [Alpine.js](https://alpinejs.dev/)
-- [Prettier](https://prettier.io/) 
+- [Prettier](https://prettier.io/)
 
 ## Prerequsities
 
@@ -92,11 +92,11 @@ npm run dev
 
 ### `src/site`
 
-[Eleventy](https://www.11ty.dev/)  Eleventy
+[Eleventy](https://www.11ty.dev/) Eleventy
 
 ### `src/scripts/components`
 
-[Alpine.js](https://alpinejs.dev/) 
+[Alpine.js](https://alpinejs.dev/)
 
 ### `src/scripts/stores`
 
@@ -116,7 +116,7 @@ to `dist` directory
 
 ### `npm run preview`
 
-http://localhost:4173 
+http://localhost:4173
 
 ### `npm run format`
 
@@ -124,7 +124,7 @@ http://localhost:4173
 
 ## config.js
 
-`config.js` 
+`config.js`
 
 ```diff
 const config = {
@@ -135,13 +135,13 @@ const config = {
 };
 ```
 
-[Eleventy](https://www.11ty.dev/) の [Pug](https://pugjs.org/) `f.url()` 
+[Eleventy](https://www.11ty.dev/) の [Pug](https://pugjs.org/) `f.url()`
 
 ```
 a(href=f.url('/about/')) About
 ```
 
-[Vite](https://vitejs.dev/) JavaScript and TypeScript `import.meta.env.BASE_URL` 
+[Vite](https://vitejs.dev/) JavaScript and TypeScript `import.meta.env.BASE_URL`
 
 ```javascript
 import.meta.env.BASE_URL; // "/my-subdir/"
