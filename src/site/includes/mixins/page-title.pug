@@ -1,0 +1,8 @@
+mixin page-title(params = {})
+	-
+		params = Object.assign({}, params);
+
+	div(class="py-16")&attributes(attributes)
+		h1(class="container w-fit text-5xl text-slate-700 font-bold kerning")= params.title
+		if params.description
+			p(class="container w-fit max-w-2xl mt-6")= params.description

@@ -1,0 +1,69 @@
+include ../mixins/*.pug
+
+-
+	const documentTitleParts = title
+		? [title, metadata.siteTitle]
+		: [metadata.siteTitle, metadata.tagline];
+
+	const menuItems = [
+		['Home index', f.url('/')],
+		['About Us', f.url('/about/')],
+		['News Stories', f.url('/news/')]
+	];
+
+doctype html
+html(lang=metadata.lang)
+	head
+		meta(charset=metadata.encoding)
+		meta(name="viewport", content="width=device-width")
+
+		title!= documentTitleParts.join(" &#8211; ")
+
+		if manifest
+			each cssPath in manifest['src/scripts/main.ts'].css
+				link(rel="stylesheet", href=f.url(`/${cssPath}`))
+			script(type="module", src=f.url(`/${manifest["src/scripts/main.ts"].file}`))
+
+		if environment === 'development'
+			script(type="module", src=f.url("/@vite/client"))
+			script(type="module", src=f.url("/src/scripts/main.ts"))
+
+		meta(name="description", content=description || metadata.tagline)
+		meta(name="format-detection", content="telephone=no")
+		meta(name="twitter:card", content="summary_large_image")
+		meta(name="twitter:site", content="@Twitter")
+		meta(name="twitter:title", content=title || metadata.siteTitle)
+
+		meta(property="og:title", content=title || metadata.siteTitle)
+		meta(property="og:type", content="website")
+		meta(property="og:image", content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`)
+		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
+		meta(property="og:description", content=description || metadata.tagline)
+		meta(property="og:site_name", content=metadata.siteTitle)
+		meta(property="og:locale", content=metadata.locale)
+
+		link(rel="apple-touch-icon", href=f.url("/assets/images/apple-touch-icon.png"))
+		link(rel="canonical", href=`${metadata.siteUrl}${f.url(page.url)}`)
+		link(rel="icon", href=f.url("/favicon.ico"))
+
+	body(class="text-slate-500 bg-white")
+		header(class="fixed top-0 inset-x-0 z-40 text-sm font-bold bg-white border-b border-slate-300")
+			div(class="container flex gap-x-6 justify-between")
+				a(class="py-3", href=f.url("/"))= metadata.siteTitle
+				div(class="contents", x-data="{ open: false }")
+					button(class="py-3", type="button", @click="open = true")
+						| Menu
+					template(x-teleport="#js-overlay-container")
+						include /partials/site-menu
+
+		block content
+
+		//- https://css-tricks.com/a-clever-sticky-footer-technique/
+		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
+			nav
+				p(class="container flex gap-x-6")
+					each item in menuItems
+						a(class="py-3", href=item[1])= item[0]
+
+		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
+		div#js-overlay-container
