@@ -1,0 +1,39 @@
+extends /layouts/base
+
+block content
+	main
+		+page-title({ title: metadata.siteTitle, description })
+
+		div(x-data="example")
+
+		img(
+			class="w-full min-h-[14rem] object-cover aspect-[3/1]",
+			src="https://source.unsplash.com/random",
+			alt="",
+			decoding="async"
+		)
+
+		section(class="container max-w-4xl mt-16")
+			h2(class="font-bold") Index Textúra
+
+			div(class="mt-8 space-y-6 text-xl")
+				p lorem responsive jjh djad af.
+				p test p
+				p test para
+
+			div(class="flex justify-center mt-8")
+				+base-button(href=f.url("/about/")) O nás
+
+		section(class="container max-w-4xl mt-16")
+			h2(class="font-bold") BOLD
+
+			ol(class="mt-8 divide-y")
+				each page in Array.from(collections.news).reverse()
+					li
+						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
+							= page.data.title
+							time(class="text-sm", datetime=page.date.toISOString())
+								= page.date.toLocaleDateString("sk-SK", { dateStyle: "long" })
+
+			div(class="flex justify-center mt-8")
+				+base-button(href=f.url("/news/")) Novinky

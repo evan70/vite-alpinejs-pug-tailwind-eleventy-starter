@@ -1,0 +1,14 @@
+extends /layouts/base
+
+block content
+	main
+		+page-title({ title })
+
+		div(class="container max-w-4xl")
+			ol(class="divide-y")
+				each page in Array.from(collections.news).reverse()
+					li
+						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
+							= page.data.title
+							time(class="text-sm", datetime=page.date.toISOString())
+								= page.date.toLocaleDateString("sk-SK", { dateStyle: "long" })
